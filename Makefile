@@ -15,7 +15,7 @@ help: ## Show this help
 .PHONY: image
 
 image: ## Build a docker image
-	@echo "${GREEN}Building a docker image (${IMAGE}:${TAG}) of Neovim ${BRANCH}${RESET}"
+	@echo "${GREEN}Building a docker image (${IMAGE}:${TAG})${RESET}"
 	@docker build --build-arg TAG=${TAG} -t ${IMAGE}:${TAG} .
 
 .PHONY: pull
@@ -28,3 +28,10 @@ pull: ## Pull a docker image
 push: ## Push a docker image
 	@echo "${GREEN}Pushing a docker image (${IMAGE}:${TAG})${RESET}"
 	@docker push ${IMAGE}:${TAG}
+
+.PHONY: all
+all: ## All
+	@make image && make push
+	@make TAG=v0.2.0 image && make TAG=v0.2.0 push
+	@make TAG=v0.2.1 image && make TAG=v0.2.1 push
+	@make TAG=v0.2.2 image && make TAG=v0.2.2 push
