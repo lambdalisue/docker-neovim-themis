@@ -1,4 +1,4 @@
-ARG TAG=${TAG:-latest}
+ARG TAG="latest"
 FROM lambdalisue/neovim-ci:${TAG}
 MAINTAINER lambdalisue <lambdalisue@hashnote.net>
 
